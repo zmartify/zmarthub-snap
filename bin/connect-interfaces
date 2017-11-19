@@ -1,0 +1,21 @@
+#!/bin/bash
+
+echo "This is a helper script and it shoud be called by user directly!"
+echo "Connecting interfaces for $SNAP_NAME"
+
+snap connect $SNAP_NAME:bluetooth-control :bluetooth-control
+snap connect $SNAP_NAME:bluez zmartbluez:service
+snap connect $SNAP_NAME:network-manager network-manager:service
+snap connect $SNAP_NAME:zmartmodbus01 pi3:zmartmodbus01
+snap connect $SNAP_NAME:network-observe core
+snap connect $SNAP_NAME:home core
+
+snap interfaces | grep $SNAP_NAME
+
+echo -e "serial interface needs to be connected manually, as there could be multiple candidates to connect to"
+echo -e "example to connect to zwave interface provided by gadget"
+echo -e "to list all available serial-port slots and plugs call"
+echo -e "\t $ snap interfaces -i=serial-port"
+echo -e "Connect $SNAP_NAME plug to all desired slots like this"
+echo -e "\t $ snap connect $SNAP_NAME:serial-port <gadget snap name>:<slog name>"
+echo -e "\t e.g. $ snap connect $SNAP_NAME:serial-port pi3-openhab:aeon-z-wave-g5"
