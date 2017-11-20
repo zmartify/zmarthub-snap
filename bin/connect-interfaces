@@ -6,7 +6,7 @@ echo "Connecting interfaces for $SNAP_NAME"
 snap connect $SNAP_NAME:bluetooth-control :bluetooth-control
 snap connect $SNAP_NAME:bluez zmartbluez:service
 snap connect $SNAP_NAME:network-manager network-manager:service
-snap connect $SNAP_NAME:zmartmodbus01 pi3:zmartmodbus01
+snap connect $SNAP_NAME:zmartmodbus01 zmarthub-pi3:zmartmodbus01
 snap connect $SNAP_NAME:network-observe core
 snap connect $SNAP_NAME:home core
 
