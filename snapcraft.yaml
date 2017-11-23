@@ -58,13 +58,6 @@ apps:
     connect:
         command: connect-interfaces
 
-    zmarthubsrv:
-        command: java -jar $SNAP/jar/zmarthubsrv.jar
-        daemon: simple
-        restart-condition: on-failure
-        plugs: [home, bluetooth-control, bluez, network, network-bind, network-manager, network-observe]
-  
-
 parts:
     zmarthub:
         source: https://github.com/zmartify/openhab-distro.git
@@ -116,12 +109,3 @@ parts:
        plugin: dump
        organize:
            '*' : addons/
-
-    zmarthubsrv:
-        source: jar
-        stage-packages:
-          - libbluetooth-dev
-        plugin: dump
-        organize:
-          'zmarthubsrv.jar' : jar/
-
